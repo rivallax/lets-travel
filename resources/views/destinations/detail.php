@@ -118,3 +118,78 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const orderBtn = document.getElementById("order-btn");
+    const transactionModal = document.getElementById("transaction-modal");
+    const priceInput = document.querySelector('.price-order');
+    const paxInput = document.getElementById('pax-order');
+    const totalPriceElement = document.getElementById('total-price-order');
+    const totalPriceInput = document.querySelector('.total-price-input-order');
+
+    function formatRupiah(amount) {
+      return amount.toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 2
+      }).replace('Rp ', 'Rp. ');
+    }
+
+    function updateTotalPrice() {
+      const paxValue = parseInt(paxInput.value, 10) || 1;
+      const price = parseFloat(priceInput.value) || 0;
+      const totalPrice = paxValue * price;
+
+      totalPriceElement.textContent = formatRupiah(totalPrice);
+      totalPriceInput.value = totalPrice.toFixed(2);
+    }
+
+    function openTransactionModal() {
+      if (!isLoggedIn) {
+        window.location.href = '<?= BASEURL; ?>/auth';
+        return;
+      }
+
+      transactionModal.style.display = 'block';
+      priceInput.value = orderBtn.getAttribute('data-price') || '0';
+      paxInput.value = paxInput.value || 1;
+      updateTotalPrice();
+    }
+
+    if (orderBtn) {
+      orderBtn.addEventListener('click', openTransactionModal);
+    }
+
+    paxInput.addEventListener('input', updateTotalPrice);
+
+    const closeButtons = document.querySelectorAll('.close-btn');
+    closeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        transactionModal.style.display = 'none';
+      });
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === transactionModal) {
+        transactionModal.style.display = 'none';
+      }
+    });
+
+    const isLoggedIn = <?= json_encode(isset($_SESSION['user'])); ?>;
+    const userId = <?= json_encode($_SESSION['user']['id'] ?? null); ?>;
+    const payButton = document.getElementById('pay');
+
+    if (payButton) {
+      payButton.addEventListener('click', function() {
+        if (!isLoggedIn) {
+          window.location.href = '<?= BASEURL; ?>/auth';
+          return;
+        }
+        alert(
+          "Fitur masih dalam tahap pengembangan \nMohon maaf atas ketidak nyamanannya!"
+        );
+      });
+    }
+  });
+</script>

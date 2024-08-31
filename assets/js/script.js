@@ -150,36 +150,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    const addToCartButton = document.querySelector(".add-to-cart");
-    const cartForm = document.getElementById("cart-form");
+    const addToCartButton = document.getElementById("add-to-cart");
+    const cartForm = document.getElementById("cart-form-modal");
     if (addToCartButton && cartForm) {
         addToCartButton.addEventListener("click", function () {
-            const formData = new FormData(cartForm);
-
-            fetch(cartForm.action, {
-                method: "POST",
-                body: formData,
-            })
-                .then((response) => response.text())
-                .then((text) => {
-                    console.log("Response text:", text);
-                    try {
-                        const data = JSON.parse(text);
-                        if (data.success) {
-                            alert("Item added to cart successfully!");
-                            closeCartModal();
-                        } else {
-                            alert("Failed to add item to cart.");
-                        }
-                    } catch (error) {
-                        console.error("Error parsing JSON:", error);
-                        alert("An error occurred while adding item to cart.");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    alert("An error occurred while adding item to cart.");
-                });
+            alert(
+                "Fitur masih dalam tahap pengembangan \nMohon maaf atas ketidak nyamanannya!"
+            );
         });
     }
 
@@ -189,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.stopPropagation();
             const destinationId = button.getAttribute("data-id");
             const price = parseFloat(button.getAttribute("data-price")) || 0;
-            const isLoggedIn = button.getAttribute("data-session") === "true"; // Memeriksa jika nilai adalah 'true'
+            const isLoggedIn = button.getAttribute("data-session") === "true";
             const urlLogin = button.getAttribute("data-login-url");
             openCartModal(destinationId, price, isLoggedIn, urlLogin);
         });

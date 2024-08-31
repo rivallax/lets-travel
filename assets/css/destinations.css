@@ -1,0 +1,117 @@
+.destinations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.destinations .search-container {
+    width: 30%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: top ease 0.1s;
+}
+
+.destinations .content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.destinations .content .card {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 416px;
+    padding: 0;
+    border: 1px solid #d1d5db;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.destinations .content .card:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.destinations .content .card img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.destinations .content .card .caption {
+    padding: 1rem;
+}
+
+.destinations .content .card .caption h3 {
+    margin-bottom: 1rem;
+}
+
+.destinations .content .card .caption p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.destinations .content .card .caption .pricing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem auto;
+}
+
+.destinations .content .card .pricing p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.destinations .content .card .pricing p i {
+    font-size: 1.3rem;
+    color: #f7c900;
+}
+
+.destinations .content .card .cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    /* background: red; */
+}
+
+.destinations .content .card .cta .btn {
+    display: block;
+    text-align: center;
+    flex: 2;
+}
+
+.destinations .content .card .cta a i {
+    font-size: 2rem;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.pagination .btn {
+    padding: 0.25rem 1rem;
+}
+
+.pagination .btn-active {
+    background: var(--primary-color-light);
+    color: #fff;
+}

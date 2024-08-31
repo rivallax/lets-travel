@@ -1,0 +1,267 @@
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    /* background: url('../img/bg.jpeg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none; */
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(0, 0, 0, 0) 10%
+    );
+    backdrop-filter: blur(5px);
+}
+
+.hero .content {
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 7%;
+    z-index: 99;
+}
+
+.hero .content h1 {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: bold;
+    color: #fff;
+    text-transform: capitalize;
+    text-align: center;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero .content h1 span {
+    color: var(--bg-light);
+    mix-blend-mode: multiply;
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color-light);
+}
+
+.hero .content .cta {
+    display: inline-block;
+    margin-top: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* About Section */
+.about {
+    margin: 2rem auto;
+}
+
+.about .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.about .content .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    height: 14rem;
+    border: 1px solid var(--bg-light);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.about .content .card:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.about .content .card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1rem;
+    color: var(--primary-color-light);
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.about .content .card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.about .content .card a {
+    position: absolute;
+    bottom: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Top Destinations Section */
+.top-destinations {
+    position: relative;
+    margin-top: 3rem;
+    padding: auto;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-destinations input[type="radio"] {
+    display: none;
+}
+
+.top-destinations .content {
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+.top-destinations .carousel-item {
+    position: absolute;
+    width: 60%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.top-destinations .carousel-inner .carousel-item img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+}
+
+.top-destinations .captions {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    transition: all 0.4s ease;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.top-destinations .captions .caption-item {
+    display: none;
+}
+
+.top-destinations .captions h2 {
+    font-weight: 700;
+    line-height: 0;
+    margin-bottom: 1rem;
+    color: var(--primary-color-light);
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.top-destinations .captions p {
+    color: var(--bg-dark);
+    margin-bottom: 1rem;
+}
+
+#item-1:checked ~ .captions .caption-item,
+#item-2:checked ~ .captions .caption-item,
+#item-3:checked ~ .captions .caption-item {
+    display: block;
+}
+
+#item-1:checked ~ .carousel-inner #card-3,
+#item-2:checked ~ .carousel-inner #card-1,
+#item-3:checked ~ .carousel-inner #card-2 {
+    transform: translateX(-40%) scale(0.8);
+    opacity: 0.4;
+    z-index: 0;
+}
+
+#item-1:checked ~ .captions #caption-3,
+#item-2:checked ~ .captions #caption-1,
+#item-3:checked ~ .captions #caption-2 {
+    display: none;
+}
+
+#item-1:checked ~ .carousel-inner #card-2,
+#item-2:checked ~ .carousel-inner #card-3,
+#item-3:checked ~ .carousel-inner #card-1 {
+    transform: translateX(40%) scale(0.8);
+    opacity: 0.4;
+    z-index: 0;
+}
+
+#item-1:checked ~ .captions #caption-2,
+#item-2:checked ~ .captions #caption-3,
+#item-3:checked ~ .captions #caption-1 {
+    display: none;
+}
+
+#item-1:checked ~ .carousel-inner #card-1,
+#item-2:checked ~ .carousel-inner #card-2,
+#item-3:checked ~ .carousel-inner #card-3 {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 1;
+}
+
+#item-1:checked ~ .carousel-inner #card-1,
+#item-2:checked ~ .carousel-inner #card-2,
+#item-3:checked ~ .carousel-inner #card-3 {
+    opacity: 1;
+}
+
+#item-1:checked ~ .carousel-inner #card-1 img,
+#item-2:checked ~ .carousel-inner #card-2 img,
+#item-3:checked ~ .carousel-inner #card-3 img {
+    box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
+}
+
+/* Contact */
+.contact {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10rem auto;
+    padding: 10px;
+}
+
+.contact .content {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.half-width {
+    flex: 1 1 48%;
+}

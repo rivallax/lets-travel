@@ -15,6 +15,7 @@
 
   <!-- Page Style -->
   <link rel="stylesheet" href="<?= ASSET; ?>/css/home.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="<?= ASSET; ?>/css/destinations.css?v=<?php echo time(); ?>">
   <link rel="stylesheet" href="<?= ASSET; ?>/css/header.css?v=<?php echo time(); ?>">
 
   <!-- Icons -->
@@ -86,7 +87,7 @@
         <h2>Add to cart</h2>
       </div>
       <div class="modal-body">
-        <form id="cart-form" method="POST" action="<?= BASEURL; ?>/carts/add/" onsubmit="return false;">
+        <form id="cart-form-modal" method="POST" action="<?= BASEURL; ?>/carts/add" onsubmit="return false;">
           <input type="text" class="price-input" hidden>
           <div class="form-group">
             <label for="pax">Pax</label>
@@ -95,11 +96,11 @@
           <div class="form-group">
             <label>Total Price:</label>
             <p class="total-price">Rp. 0.00</p>
-            <input type="hidden" name="total_price" class="total-price-input" value="0">
+            <input type="hidden" name="total_price" class="total-price-input" value="0" />
           </div>
-          <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">
-          <input type="hidden" name="destination_id" id="destination-id" value="">
-          <button type="button" class="btn btn-primary add-to-cart">Add To Cart</button>
+          <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>" />
+          <input type="hidden" name="destination_id" id="destination-id" value="" />
+          <button type="button" class="btn btn-primary" id="add-to-cart">Add To Cart</button>
         </form>
       </div>
     </div>

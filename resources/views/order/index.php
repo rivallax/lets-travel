@@ -4,7 +4,7 @@
     <div class="thumbnail">
       <img src="<?= $data['qr_code_url']; ?>" alt="<?= $data['destination']['name']; ?>">
     </div>
-    <a href="<?= $data['qrCodeUrl']; ?>" download="ticket-qr-code.png" class="btn btn-primary">Download QR Code</a>
+    <a href="<?= $data['qr_code_url']; ?>" download="ticket-qr-code.pdf" class="btn btn-primary">Download QR Code</a>
   </div>
   <div class="card">
     <h1>Order Details</h1>

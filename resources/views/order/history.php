@@ -35,7 +35,7 @@
                 <?php endif; ?>
               </td>
               <td>
-                <a href="<?= BASE_URL; ?>/order/<?= $order['id']; ?>" class="btn btn-primary">Detail</a>
+                <a href="<?= BASEURL; ?>/order/<?= $order['id']; ?>" class="btn btn-primary">Detail</a>
               </td>
             </tr>
             <?php $i++; ?>

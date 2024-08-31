@@ -32,65 +32,6 @@ class Order extends Controller
 
     $destinationsModel = $this->model('Destinations_model');
     $destination = $destinationsModel->getDestination($id);
-
-    if (empty($pax) || empty($totalPrice) || empty($destination)) {
-      echo json_encode(['error' => 'Invalid input']);
-      return;
-    }
-
-    $itemDetails = [
-      [
-        'id' => $destination['id'],
-        'name' => $destination['name'],
-        'price' => $destination['price'],
-        'quantity' => $pax
-      ]
-    ];
-
-    $transaction = [
-      'transaction_details' => [
-        'order_id' => uniqid(),
-        'gross_amount' => $totalPrice
-      ],
-      'item_details' => $itemDetails,
-      'customer_details' => [
-        'first_name' => $_SESSION['user']['full_name'],
-        'email' => $_SESSION['user']['email'],
-      ],
-      'enabled_payments' => ['gopay', 'dana', 'bank_transfer']
-    ];
-
-    try {
-      $snapToken = \Midtrans\Snap::getSnapToken($transaction);
-      echo json_encode(['token' => $snapToken]);
-    } catch (Exception $e) {
-      echo json_encode(['error' => $e->getMessage()]);
-    }
-  }
-
-  public function saveTransaction()
-  {
-    $input = json_decode(file_get_contents('php://input'), true);
-
-    $orderId = $input['order_id'] ?? null;
-    $userId = $input['user_id'] ?? null;
-    $destinationId = $input['destination_id'] ?? null;
-    $totalPrice = $input['total_price'] ?? null;
-    $quantity = $input['quantity'] ?? null;
-
-    if (!$orderId || !$userId || !$destinationId || !$totalPrice || !$quantity) {
-      echo json_encode(['status' => false, 'message' => 'Invalid input']);
-      return;
-    }
-
-    $ordersModel = $this->model('Orders_model');
-    $result = $ordersModel->createOrder($orderId, $userId, $destinationId, $totalPrice, $quantity);
-
-    if (!$result) {
-      echo json_encode(['status' => false, 'message' => 'Database insert failed']);
-    } else {
-      echo json_encode(['status' => true, 'order_id' => $orderId]);
-    }
   }
 
   private function generateQRCodeUrl($orderDetails)
