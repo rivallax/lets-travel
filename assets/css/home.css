@@ -5,10 +5,6 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    /* background: url('../img/bg.jpeg') no-repeat;
-  background-size: cover;
-  background-position: center;
-  pointer-events: none; */
 }
 
 .hero::before {
